@@ -1,23 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import PrivateRoutes from './containers/PrivateRoutes/PrivateRoutes';
+import Navbar from './components/Navbar/Navbar';
+import UserContext from './context/UserContext';
+import { useState } from 'react';
+import LocalStorageService from './services/LocalStorageService';
 
 function App() {
+
+  const [role, setRole] = useState(LocalStorageService.getRole());
+
+  console.log('role: ', role);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserContext.Provider value={{ role, setRole }}>
+        <Navbar />
+        <PrivateRoutes />
+      </UserContext.Provider>
     </div>
   );
 }

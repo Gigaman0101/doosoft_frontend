@@ -1,0 +1,4 @@
+
+.ant-table-container table > thead > tr:first-child th {
+    background-color: rgba(102, 189, 82, 1);
+}
